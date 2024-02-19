@@ -4,8 +4,8 @@ import { createToken } from "../middleware/AuthenticateUser.js";
 class Users {
   fetchUsers(req, res) {
     const qry = `
-        SELECT UserID,firstName,lastName,userAge,gender,emailAdd,userPwd,userRole
-        FROM Users
+        SELECT userID,firstName,lastName,userAge,emailAdd,userPwd,userRole
+        FROM users
         `;
     db.query(qry, (err, results) => {
       if (err) throw err;
@@ -17,8 +17,8 @@ class Users {
   }
   fetchUser(req, res) {
     const qry = `
-        SELECT UserID,firstName,lastName,userAge,gender,emailAdd,userPwd,userRole
-        FROM Users
+    SELECT userID,firstName,lastName,userAge,emailAdd,userPwd,userRole
+    FROM users
         WHERE userID = ${req.params.id}
         `;
     db.query(qry, (err, result) => {
@@ -38,13 +38,13 @@ class Users {
       userPwd: data.userPwd,
     };
     const qry = `
-INSERT INTO Users
+INSERT INTO users
 SET ?;
 `;
     db.query(qry, [data], (err) => {
       if (err) {
         res.json({
-          status: statusCode,
+          status: res.statusCode,
           msg: "already exists.please use another email address",
         });
       } else {
@@ -59,6 +59,4 @@ SET ?;
     });
   }
 }
-export{
-    Users
-}
+export { Users };
