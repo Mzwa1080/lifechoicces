@@ -16,9 +16,8 @@
     }
     fetchProduct(req,res){
         const qry =`
-        SELECT prodID,prodName,prodQuantity, prodAmount,userID
-        FROM Products
-        WHERE prodID=${req.params.id}
+        SELECT prodID,prodName,prodQuantity, productAmount,userID
+        FROM products WHERE prodID=${req.params.id}
         `
         db.query(qry, (err, result) => {
             if (err) throw err;
@@ -29,11 +28,9 @@
           }); 
     }
     addProduct(req,res){
-        const qry=`
-        INSERT INTO Products
-        SET ?;`
+        const qry=` INSERT INTO Products SET ?;`
 
-        db.query(qry,(err)=>{
+        db.query(qry,[req.body], (err)=>{
           if(err) throw err
           res.json({
             status:res.statusCode,
