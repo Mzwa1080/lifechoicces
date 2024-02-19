@@ -1,4 +1,4 @@
-import { connection as db } from "../config/index";
+import { connection as db } from "../config/index.js";
 import { hash, compare } from "bcrypt";
 import { createToken } from "../middleware/AuthenticateUser.js";
 class Users {

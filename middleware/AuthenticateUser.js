@@ -1,9 +1,9 @@
 import {config} from "dotenv"
 config()
-import {sign,verify} from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 
 function createToken(user) {
-    return sign({
+    return jwt.sign({
         emailAdd:user.emailAdd,
         userPwd:user.userPwd
     },
@@ -20,7 +20,7 @@ function verifyToken(req,res,next) {
     //retrieve a token from the browser
    const token=req.headers['authorization']
 if(token){
-    if(verify(token,process.env.SECRET_KEY)){
+    if(jwt.verify(token,process.env.SECRET_KEY)){
         next()
     
 }else{
