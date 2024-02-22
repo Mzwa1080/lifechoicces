@@ -33,9 +33,13 @@ app.use(
 app.get('^/$|/lifechoices',(req,res)=>{
 res.status(200).sendFile(path.join(__dirname,'./static/index.html'))
 })
+// users
 app.use('/users',userRouter)
+
+// Products 
 app.use('/products',productRouter)
+
 app.use(errorHandling)
 app.listen(port,()=>{
-    console.log(`server is running on ${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 })
