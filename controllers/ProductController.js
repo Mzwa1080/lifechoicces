@@ -5,9 +5,9 @@ import { products } from '../model/index.js'
 const productRouter=express.Router()
 
 //fetch all products
-productRouter.get('./',(req,res)=>{
+productRouter.get('/',(req,res)=>{
     try{
-        products.fetchProduct(req,res)
+        products.fetchProducts(req,res)
     }catch(e){
         res.json({
             status:res.statusCode,
@@ -37,6 +37,21 @@ productRouter.post('/addProduct',bodyParser.json(),(req,res)=>{
         })
     }
 })
+productRouter.post('/deleteProducts',(req,res)=>{
+    try{
+        products.deleteProducts(req,res)
+
+    }catch(e){
+
+        res.json({
+            status:res.statusCode,
+            msg:'failed to delete a product',
+            // results:products.fetchProducts(req,res)
+        })
+    }
+})
+
+
 export{
     productRouter
 }
