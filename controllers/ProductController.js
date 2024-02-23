@@ -37,7 +37,7 @@ productRouter.post('/addProduct',bodyParser.json(),(req,res)=>{
         })
     }
 })
-productRouter.post('/deleteProducts',(req,res)=>{
+productRouter.delete('/deleteProducts',(req,res)=>{
     try{
         products.deleteProducts(req,res)
 
@@ -47,6 +47,32 @@ productRouter.post('/deleteProducts',(req,res)=>{
             status:res.statusCode,
             msg:'failed to delete a product',
             // results:products.fetchProducts(req,res)
+        })
+    }
+})
+
+productRouter.delete('/delete/:id',(req,res)=>{
+    try{
+        productRouter.deleteProduct(req,res)
+
+    }catch(e){
+
+        res.json({
+            status:res.statusCode,
+            msg:'failed to delete a user',
+        })
+    }
+})
+
+productRouter.patch('/update/:id',(req,res)=>{
+    try{
+        productRouter.updateProduct(req,res)
+
+    }catch(e){
+
+        res.json({
+            status:res.statusCode,
+            msg:'failed to update a user',
         })
     }
 })

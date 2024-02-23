@@ -51,6 +51,36 @@
 
       })
   }
+  deleteProduct(req,res){
+    const qry=`DELETE FROM products WHERE prodID=${req.params.id} ;`
+    // const user = req.body
+  
+    db.query(qry, (err)=>{
+  
+      if(err) throw err
+      res.json({
+        status: res.statusCode,
+        msg:'Product is deleted!'
+      })
+  
+    })
+  }
+  async updateProduct(req,res){
+    const qry=`
+    UPDATE products 
+    SET ?
+    WHERE prodID = ${req.params.id};`
+  
+    db.query(qry, [req.body], (err)=>{
+      if(err) throw err
+      
+      res.json({
+        status: res.statusCode,
+        msg:'Product is updated!'
+      })
+  
+    })
+  }
  
  }
  export{
