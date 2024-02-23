@@ -77,6 +77,33 @@ productRouter.patch('/update/:id',(req,res)=>{
     }
 })
 
+productRouter.delete('/delete/:id',(req,res)=>{
+    try{
+        products.deleteProduct(req,res)
+
+    }catch(e){
+
+        res.json({
+            status:res.statusCode,
+            msg:'failed to delete a product',
+            // results:products.fetchProducts(req,res)
+        })
+    }
+})
+
+productRouter.patch('/update/:id',(req,res)=>{
+    try{
+        products.updateProduct(req,res)
+
+    }catch(e){
+
+        res.json({
+            status:res.statusCode,
+            msg:'failed to update a product',
+            // results:products.fetchProducts(req,res)
+        })
+    }
+})
 
 export{
     productRouter
