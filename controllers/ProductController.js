@@ -64,15 +64,13 @@ productRouter.delete('/delete/:id',(req,res)=>{
     }
 })
 
-productRouter.patch('/update/:id',(req,res)=>{
+productRouter.patch('/update/:id', bodyParser.json(),(req,res)=>{
     try{
         productRouter.updateProduct(req,res)
-
     }catch(e){
-
         res.json({
-            status:res.statusCode,
-            msg:'failed to update a user',
+            status: res.statusCode,
+            msg: 'Update failed'
         })
     }
 })
